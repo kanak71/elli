@@ -1,0 +1,89 @@
+/* 기본 설정 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    display: flex;
+    justify-content: center;    /* 수평 */
+    align-items: center;    /* 수직 */
+    background-color: #ffffff;
+}
+
+/* 화면 상단과 하단에 직선 추가 */
+body {
+    border-top: 5px solid #e98585; /* 상단 직선 */
+    border-bottom: 5px solid #e98585; /* 하단 직선 */
+}
+
+/* page-container는 중앙에 배치된 영역 */
+#page-container {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+}
+
+/* #green에 대한 스타일 */
+#green {
+    width: 20%; /* 부모 div의 너비를 20%로 설정 */
+    height: auto;
+}
+
+/* img 태그에 대한 스타일 */
+#green img {
+    width: 100%;  /* 부모 요소의 너비에 맞게 이미지 크기 설정 */
+    height: auto;  /* 비율을 유지하면서 높이를 자동으로 설정 */
+    display: block;  /* inline 요소인 이미지를 block으로 설정 */
+    margin: 0 auto;  /* 중앙 정렬 */
+}
+/* elli 텍스트 스타일 */
+#moving-text {
+    font-size: 5rem;
+    font-weight: bold;
+    color: #e17b7b;
+    font-family: 'Arial', sans-serif; /* 글꼴어떻게바꾸냐 */
+}
+
+#moving-text span {
+    display: inline-block;
+    animation: bounceText 2s ease-in-out infinite;
+}
+
+/* 순차적 움직임 */
+#moving-text span:nth-child(1) {
+    animation-delay: 0s;
+}
+#moving-text span:nth-child(2) {
+    animation-delay: 0.1s;
+}
+#moving-text span:nth-child(3) {
+    animation-delay: 0.2s;
+}
+#moving-text span:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+/* 튀어오르는 애니메이션 */
+@keyframes bounceText {
+    0% {
+        transform: translateY(0); /* 시작 위치 */
+    }
+    30% {
+        transform: translateY(-30px); /* 위로 올라감 */
+    }
+    50% {
+        transform: translateY(0); /* 제자리로 돌아옴 */
+    }
+    70% {
+        transform: translateY(-15px); /* 살짝 올라갔다 내려옴 */
+    }
+    100% {
+        transform: translateY(0); /* 최종 제자리로 */
+    }
+}

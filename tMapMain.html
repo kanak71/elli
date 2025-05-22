@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Elli's Navigation</title>
+
+  <!-- jQuery 및 Tmap API 불러오기 -->
+  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="https://apis.openapi.sk.com/tmap/vectorjs?version=1&appKey=h1O5fL07Hj7MBUnmtKjF5azPoDWeLeAW9prwnT6B"></script>
+  <script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=h1O5fL07Hj7MBUnmtKjF5azPoDWeLeAW9prwnT6B"></script>
+
+  <!-- 사용자 정의 스타일 및 스크립트 -->
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tMapMain.css">
+  <script src="tMap.js" defer></script>
+</head>
+
+<body onload="tMapMake()">
+  <header>
+    <!-- 상단 로고와 타이틀을 중앙 정렬로 배치 -->
+    <div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 20px;">
+      <span style="font-size: 1.8em; color: #ff69b4; font-weight: bold;">💚 Elli</span>
+      <img src="img/pinkelli.png" class="pinkelli">
+      <span style="font-size: 1.8em; color: #ff69b4; font-weight: bold;">💚</span>
+      <!-- 💓 -->
+    </div>
+    <hr>
+  </header>
+
+  <main>
+    <div id="layout">
+      <div id="mapLoc"></div>
+
+      <!-- 검색 전에도 보여질 경로 안내 패널 -->
+      <div id="sidePanel3">
+        <div style="background:#fff0f5; padding:20px; border-radius:10px; box-shadow: 2px 2px 8px rgba(0,0,0,0.1);">
+          <h3 style="color:#ff69b4; margin-top:0;">💡 사용 방법</h3>
+          <ul style="text-align:left; color:#555; font-size:14px; line-height:1.6;">
+            <li>📍 출발지/도착지를 입력하고 <strong>엔터</strong>를 누르세요.</li>
+            <li>📌 지도 위 마커를 클릭해서 <strong>‘Yes’</strong>를 눌러 선택하세요.</li>
+            <li>🚀 <strong>‘경로 검색하기’</strong> 버튼을 클릭하면 길찾기가 시작됩니다!</li>
+            <li>💖 ‘현재 위치를 출발지로 설정하기’도 사용해보세요.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <form>
+        <div class="input-row">
+          <label for="start">출발지:</label>
+          <input type="text" id="start" placeholder="출발지를 입력하고 엔터를 눌러주세요" onfocus="this.value=''" onkeyup="search(event, this)">
+        </div>
+      
+        <div class="input-row">
+          <label for="end">도착지:</label>
+          <input type="text" id="end" placeholder="도착지를 입력하고 엔터를 눌러주세요" onfocus="this.value=''" onkeyup="search(event, this)">
+        </div>
+      
+        <button type="button" onclick="getData()">🚀 경로 검색하기</button>
+        <input type="button" value="🚶 현재 위치를 출발지로 설정하기" onclick="getGeo()">
+    </form>
+  </main>
+
+  <!-- 💖 전체화면 로딩 오버레이 -->
+<div id="loading-overlay" style="
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fff;
+  z-index: 9999;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+">
+  <div style="
+    width: 120px;
+    height: 120px;
+    background-image: url('img/elli3.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    animation: spin 3s linear infinite;
+  "></div>
+  <p style="margin-top: 20px; font-size: 20px;">엘리가 길을 찾고 있는 중입니다...</p>
+</div>
+
+<!-- 로딩 회전 애니메이션 -->
+<style>
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+</body>
+
+
+</html>
+
+
+
+<!--
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Elli's Navigation</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://apis.openapi.sk.com/tmap/vectorjs?version=1&appKey=h1O5fL07Hj7MBUnmtKjF5azPoDWeLeAW9prwnT6B"></script>
+    <script src="https://apis.openapi.sk.com/tmap/jsv2?version=1&appKey=h1O5fL07Hj7MBUnmtKjF5azPoDWeLeAW9prwnT6B"></script>
+    <script src="tMap.js" defer></script>
+    <link rel="stylesheet" href="tMapMain.css">
+
+</head>
+
+<body onload="tMapMake()">
+    <header>
+        <h2>
+            💓 Elli
+            <//임티골라줘 💖💗💓💞💘💝❤️‍🔥💟//>
+            <img src="img/pinkelli.png" class="pinkelli">
+            💓
+          </h2>
+        <div id="geo"></div>
+        <hr>
+
+    </header>
+
+    <main>
+
+        <div id="layout">
+            <div id="mapLoc"></div>
+            <div id="sidePanel3"></div>
+        </div>
+
+        <form>
+            <label for="start">Start: </label>
+            <input type="text" onkeyup="search(event, this)" id="start" placeholder="start" value="출발지를 입력해주세요"><br>
+            <label for="end">End: </label>
+            <input type="text" onkeyup="search(event, this)" id="end" placeholder="end" value="도착지를 입력해주세요">
+            <button type="button" onclick="getData()">🚀 경로 검색하기</button><br>
+            <input type="button" value="🚶 현재 위치를 출발지로 설정하기" onclick="getGeo()">
+        </form>
+
+
+        <// <div id="sidePanel1">panel1</div>
+        <div id="sidePanel2">panel2</div> //>
+    </main>
+</body>
+</html>
+-->

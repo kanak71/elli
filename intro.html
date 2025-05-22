@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>elli</title>
+    <link rel="stylesheet" href="intro.css">
+</head>
+
+<body>
+    <div id="page-container">
+        <div id="green">
+            <img src="img/pinkelli.png">
+        </div>
+        <h1 id="moving-text">
+            <span>e</span>
+            <span>l</span>
+            <span>l</span>
+            <span>i</span>
+        </h1>
+    </div>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>elli</title>
+    <link rel="prefetch" href="main1.html">
+</head>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // 로딩 화면을 표시합니다.
+            setTimeout(function () {
+                // 로컬 스토리지에 플래그를 설정하여 main1.html이 로드될 때 이를 확인하도록 함
+                localStorage.setItem('loadingComplete', 'true');
+                // main1.html로 이동
+                window.location.href = 'tMapMain.html';
+            }, 2000); // 2초 동안 로딩 화면을 표시합니다.
+        });
+    </script>
+</body>
+
+</html>
